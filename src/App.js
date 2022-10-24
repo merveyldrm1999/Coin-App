@@ -2,10 +2,10 @@ import { useState } from "react";
 import "./App.css";
 import CoinIndex from "./compenents/CoinIndex";
 import NavbarCoin from "./compenents/NavbarCoin";
-import AlımSatım from "./pages/AlımSatım";
 import IslemGecmisi from "./pages/IslemGecmisi";
 // import Layout from "../pages/Layout";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import AlimSatim from "./pages/AlimSatim";
 
 function App() {
   const [wallet, setWallet] = useState("light");
@@ -17,7 +17,7 @@ function App() {
         <Routes>
           <Route
             path="/alimsatim"
-            element={<AlımSatım wallet={wallet} setWallet={setWallet} />}
+            element={<AlimSatim wallet={wallet} setWallet={setWallet} />}
           />
           <Route path="/islemgecmisi" element={<IslemGecmisi />} />
           <Route path="/" element={<CoinIndex />} />

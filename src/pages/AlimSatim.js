@@ -1,6 +1,6 @@
 import { Button, Table } from "reactstrap";
 
-const AlımSatım = ({ theme, setTheme, wallet, setWallet }) => {
+const AlimSatim = ({ wallet, setWallet }) => {
   const handleSell = (walletbuy) => {};
   return (
     <div>
@@ -41,4 +41,4 @@ const AlımSatım = ({ theme, setTheme, wallet, setWallet }) => {
     </div>
   );
 };
-export default AlımSatım;
+export default AlimSatim;
