@@ -3,8 +3,13 @@ import { useEffect, useState } from "react";
 import { Col, Row, Button, Table, Container } from "reactstrap";
 import CoinCard from "./CoinCard";
 import CoinModal from "./CoinModal";
+import { MainContext, useContext } from "../context";
 
 const CoinIndex = (props) => {
+  // const [wal, setWal] = useState([]);
+
+  const { wallet, setWallet } = useContext(MainContext);
+
   const [coins, setCoins] = useState([]);
   const [basket, setBasket] = useState(
     localStorage.getItem("baskets") !== "undefined" &&
@@ -15,12 +20,7 @@ const CoinIndex = (props) => {
   const [modalAcikMi, setModal] = useState(false);
 
   const toggle = () => setModal(!modalAcikMi);
-  const [wallet, setWallet] = useState(
-    localStorage.getItem("items") !== "undefined" &&
-      localStorage.getItem("baskets") !== null
-      ? JSON.parse(localStorage.getItem("items"))
-      : []
-  );
+
   useEffect(() => {
     localStorage.setItem("baskets", JSON.stringify(basket));
   }, [basket]);
@@ -141,4 +141,3 @@ const CoinIndex = (props) => {
 };
 
 export default CoinIndex;
-//return <p className="p-5">{coin.name}</p>;

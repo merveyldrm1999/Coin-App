@@ -1,5 +1,3 @@
-// import React, { useState } from "react";
-// import { Nav, NavItem, NavLink, Table } from "reactstrap";
 import { NavLink } from "react-router-dom";
 
 const NavbarCoin = () => {
@@ -7,6 +5,15 @@ const NavbarCoin = () => {
     <div>
       <nav>
         <ul>
+          <li>
+            <NavLink
+              style={({ isActive }) => ({ color: isActive ? "red" : "pink" })}
+              to="/"
+            >
+              Ana Sayfa
+            </NavLink>
+          </li>
+
           <li>
             <NavLink
               style={({ isActive }) => ({ color: isActive ? "red" : "pink" })}

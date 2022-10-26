@@ -55,6 +55,8 @@ const CoinCard = ({ coin, setBasket, basket }) => {
                   onChange={(e) => setCount(e.target.value)}
                   value={count}
                   type="number"
+                  min="1"
+                  max="5000"
                   placeholder="Count:"
                 />
               </Col>

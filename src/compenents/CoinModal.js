@@ -1,4 +1,5 @@
 // import { useState } from "react";
+import { CoinIndex } from "./CoinIndex";
 import {
   Button,
   Modal,
@@ -31,10 +32,6 @@ const CoinModal = ({
       const dellBasket = wallet.filter((val) => val.name !== walletnameName);
       setWallet(dellBasket);
     }
-  };
-  const switchTheme = () => {
-    setWallet((wallet) => [...wallet]);
-    setTheme([]);
   };
 
   return (
@@ -72,7 +69,7 @@ const CoinModal = ({
             </tbody>
           </Table>
           <div>
-            <Button onClick={switchTheme} color="primary" href="/alimsatim">
+            <Button color="primary" href="/alimsatim">
               Satış Kısmına Lİstele
             </Button>
           </div>
