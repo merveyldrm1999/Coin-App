@@ -6,48 +6,37 @@ import IslemGecmisi from "./pages/IslemGecmisi";
 // import Layout from "../pages/Layout";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import AlimSatim from "./pages/AlimSatim";
+import { MainContext, useContext } from "./context";
 
 function App() {
-  const [wallet, setWallet] = useState("light");
+  const [wallet, setWallet] = useState(
+    localStorage.getItem("items") !== "undefined" &&
+      localStorage.getItem("items") !== null
+      ? JSON.parse(localStorage.getItem("items"))
+      : []
+  );
+  const data = {
+    wallet,
+    setWallet,
+  };
   return (
     <div className="App">
-      <BrowserRouter>
-        <NavbarCoin />
+      <MainContext.Provider value={data}>
+        <BrowserRouter>
+          <NavbarCoin />
 
-        <Routes>
-          <Route
-            path="/alimsatim"
-            element={<AlimSatim wallet={wallet} setWallet={setWallet} />}
-          />
-          <Route path="/islemgecmisi" element={<IslemGecmisi />} />
-          <Route path="/" element={<CoinIndex />} />
+          <Routes>
+            <Route path="/alimsatim" element={<AlimSatim />} />
+            <Route path="/islemgecmisi" element={<IslemGecmisi />} />
+            <Route path="/" element={<CoinIndex />} />
 
-          <Route />
-        </Routes>
-      </BrowserRouter>
+            <Route />
+          </Routes>
+        </BrowserRouter>
+      </MainContext.Provider>
       {/* <CoinIndex /> */}
     </div>
   );
 }
 
 export default App;
-
-// import { useState } from "react";
-// import "./App.css";
-// import CoinIndex from "./compenent/CoinIndex";
-// import NavbarCoin from "./compenent/NavbarCoin";
-
-// function App() {
-//   const [page, setPage] = useState("alımSatım");
-//   return (
-//     <div className="App">
-//       <NavbarCoin setPage={setPage} />
-//       {page == "alımSatım"
-//         ? console.log("alımsatım")
-//         : console.log("islemgecmisi")}
-//       <CoinIndex />
-//     </div>
-//   );
-// }
-
-// export default App;
