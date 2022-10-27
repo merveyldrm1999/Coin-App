@@ -32,7 +32,7 @@ const CoinIndex = (props) => {
   useEffect(() => {
     axios
       .get("https://rest.coinapi.io/v1/exchangerate/USD", {
-        headers: { "X-CoinAPI-Key": "8E0F754D-ABD5-4A30-842E-6DE6B7657406" },
+        headers: { "X-CoinAPI-Key": "3372D4C7-8A9E-4CA7-BD96-3486140B3D7E" },
       })
       .then((res) => {
         setCoins(res.data.rates);
@@ -100,7 +100,7 @@ const CoinIndex = (props) => {
             <tbody>
               {basket.map((basketCoin) => {
                 return (
-                  <tr key={basketCoin.name}>
+                  <tr key={Math.floor(Math.random() * 999999)}>
                     <th scope="row">{basketCoin.name}</th>
                     <td>{basketCoin.count}</td>
                     <td>{basketCoin.amount * basketCoin.count}</td>
