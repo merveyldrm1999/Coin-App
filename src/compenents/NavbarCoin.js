@@ -1,37 +1,56 @@
+import { useState } from "react";
 import { NavLink } from "react-router-dom";
+import {
+  Collapse,
+  Nav,
+  Navbar,
+  NavbarText,
+  NavbarToggler,
+  NavItem,
+} from "reactstrap";
 
 const NavbarCoin = () => {
+  const [isOpen, setIsOpen] = useState(true);
+
   return (
     <div>
-      <nav>
-        <ul>
-          <li>
-            <NavLink
-              style={({ isActive }) => ({ color: isActive ? "red" : "pink" })}
-              to="/"
-            >
-              Ana Sayfa
-            </NavLink>
-          </li>
+      <Navbar color="secondary" dark>
+        <Collapse isOpen={isOpen} navbar>
+          <Nav>
+            <NavItem>
+              <NavLink
+                style={({ isActive }) => ({
+                  color: isActive ? "black" : "white",
+                })}
+                to="/"
+              >
+                Ana Sayfa
+              </NavLink>
+            </NavItem>
 
-          <li>
-            <NavLink
-              style={({ isActive }) => ({ color: isActive ? "red" : "pink" })}
-              to="/alimsatim"
-            >
-              Satım
-            </NavLink>
-          </li>
-          <li>
-            <NavLink
-              style={({ isActive }) => ({ color: isActive ? "red" : "pink" })}
-              to="/islemgecmisi"
-            >
-              İşlem Geçmişi
-            </NavLink>
-          </li>
-        </ul>
-      </nav>
+            <NavItem className="ms-5">
+              <NavLink
+                style={({ isActive }) => ({
+                  color: isActive ? "black" : "white",
+                })}
+                to="/alimsatim"
+              >
+                Satım
+              </NavLink>
+            </NavItem>
+            <NavItem className="ms-5">
+              <NavLink
+                style={({ isActive }) => ({
+                  color: isActive ? "black" : "white",
+                })}
+                to="/islemgecmisi"
+              >
+                İşlem Geçmişi
+              </NavLink>
+            </NavItem>
+          </Nav>
+        </Collapse>
+      </Navbar>
     </div>
   );
 };

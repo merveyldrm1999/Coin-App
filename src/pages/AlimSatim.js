@@ -14,28 +14,25 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 
 const AlimSatim = () => {
-  const [sellWallet, setSellWallet] = useState(
-    localStorage.getItem("sellwallets") !== "undefined" &&
-      localStorage.getItem("sellwallets") !== null
-      ? JSON.parse(localStorage.getItem("sellwallets"))
-      : []
-  );
+  const [sellCount, setSellCount] = useState(0);
+  const [selectedCoin, setSelectedCoin] = useState([]);
 
+  const { wallet, setWallet } = useContext(MainContext);
+  const { sellWallet, setSellWallet } = useContext(MainContext);
+  useEffect(() => {
+    localStorage.setItem("items", JSON.stringify(wallet));
+  }, [wallet]);
   useEffect(() => {
     localStorage.setItem("sellwallets", JSON.stringify(sellWallet));
   }, [sellWallet]);
-  const [selectedCoin, setSelectedCoin] = useState([]);
 
-  const [sellCount, setSellCount] = useState(0);
-
-  const { wallet, setWallet } = useContext(MainContext);
   const handleSell = () => {
     let sellcoin = wallet.find((val) => val.name === selectedCoin.value);
 
     if (sellcoin.count >= sellCount) {
       axios
         .get(`https://rest.coinapi.io/v1/exchangerate/${sellcoin.name}/USD`, {
-          headers: { "X-CoinAPI-Key": "8E0F754D-ABD5-4A30-842E-6DE6B7657406" },
+          headers: { "X-CoinAPI-Key": "3372D4C7-8A9E-4CA7-BD96-3486140B3D7E" },
         })
         .then((res) => {
           let now = new Date();
@@ -52,7 +49,7 @@ const AlimSatim = () => {
         });
       const delPieceSell = wallet.find((coin) => coin.name === sellcoin.name);
 
-      if (delPieceSell.count > 1) {
+      if (delPieceSell.count - sellCount !== 0) {
         let changePieceSell = wallet.map((val) => {
           if (val.name === sellcoin.name) {
             delPieceSell.count -= parseFloat(sellCount);
@@ -100,7 +97,7 @@ const AlimSatim = () => {
                 <tbody>
                   {wallet.map((a) => {
                     return (
-                      <tr key={a.name}>
+                      <tr key={Math.floor(Math.random() * 999999)}>
                         <th scope="row">{a.name}</th>
                         <td>{a.count}</td>
                         <td>{a.amount * a.count}</td>
@@ -166,13 +163,13 @@ const AlimSatim = () => {
               <tbody>
                 {sellWallet.map((b) => {
                   return (
-                    <tr key={b.name}>
+                    <tr key={Math.floor(Math.random() * 999999)}>
                       <th scope="row">{b.name}</th>
                       <td>{b.count}</td>
                       <td>{b.sellPrice}</td>
                       <td>{b.byprice}</td>
                       <td>{b.date}</td>
-                      <td>{b.byprice - b.sellPrice}</td>
+                      <td>{b.sellPrice - b.byprice}</td>
                     </tr>
                   );
                 })}

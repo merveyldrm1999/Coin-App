@@ -15,9 +15,18 @@ function App() {
       ? JSON.parse(localStorage.getItem("items"))
       : []
   );
+  const [sellWallet, setSellWallet] = useState(
+    localStorage.getItem("sellwallets") !== "undefined" &&
+      localStorage.getItem("sellwallets") !== null
+      ? JSON.parse(localStorage.getItem("sellwallets"))
+      : []
+  );
+
   const data = {
     wallet,
     setWallet,
+    sellWallet,
+    setSellWallet,
   };
   return (
     <div className="App">

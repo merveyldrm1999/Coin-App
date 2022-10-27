@@ -51,7 +51,7 @@ const CoinModal = ({
             <tbody>
               {wallet.map((walletname) => {
                 return (
-                  <tr key={walletname.name}>
+                  <tr key={Math.floor(Math.random() * 999999)}>
                     <th scope="row">{walletname.name}</th>
                     <td>{walletname.count}</td>
                     <td>{walletname.amount * walletname.count}</td>
